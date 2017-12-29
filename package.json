@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "",
+  "version": "",
+  "dependencies": {
+    "angular": "^1.6.8",
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "hbs": "^4.0.1",
+    "mysql": "^2.14.1",
+    "react": "^16.2.0",
+    "uikit": "^3.0.0-beta.35"
+  }
+}
