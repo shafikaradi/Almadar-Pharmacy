@@ -276,6 +276,28 @@ router.get('/userInfo',(req,res) => {
 
 });
 
+router.post('/updatePassword',(req,res) => {
+
+    if(req.session.nationalId){
+
+        db.updatePassword(req.body.oldPassword, req.body.newPassword, req.session.nationalId, (result) => {
+
+            res.send({result:result});
+
+        });
+        
+
+
+    }else{
+
+        res.redirect('/');
+
+
+    }   
+
+
+});
+
 const rerenderPageOnInserting = (res,name,specialty,result) => {
 
     res.render('addUser.ejs',{

@@ -167,9 +167,34 @@ const fetchUserData = (nationalId,callback) => {
 
     const con = mysql.createConnection(connectionConfiguration);
 
-    con.query(`SELECT SELECT USER.NATIONAL_ID, USER.FIRST_NAME, USER.FATHER_NAME, USER.SURENAME, USER_TYPE.USER_TYPE_AR, USER.EMAIL, USER.MOBILE_NO FROM USER LEFT JOIN USER_TYPE ON USER_TYPE.USER_TYPE_ID = USER.USER_TYPE WHERE USER.NATIONAL_ID = ${nationalId}`);
+    con.query(`SELECT USER.NATIONAL_ID, USER.FIRST_NAME, USER.FATHER_NAME, USER.SURENAME, USER_TYPE.USER_TYPE_AR, USER.EMAIL, USER.MOBILE_NO FROM USER LEFT JOIN USER_TYPE ON USER_TYPE.USER_TYPE_ID = USER.USER_TYPE WHERE USER.NATIONAL_ID = ${nationalId}`,(error,result) => {
 
 
+        if(error) throw error;
+        callback(result);
+
+        con.end();
+
+    });
+
+
+
+}
+
+
+const updatePassword = (oldePassword, newPasswordVal, nationalId) => {
+
+    const con = mysql.createConnection(connectionConfiguration);
+
+    con.query(`UPDATE USER SET PASSWORD = "${newPasswordVal}" WHERE NATIONAL_ID = ${nationalId} AND PASSWORD = "${oldePassword}"`,(error,result) => {
+
+
+        if(error) throw error;
+        callback(result);
+
+        con.end();
+
+    });
 
 }
 
@@ -183,6 +208,7 @@ module.exports = {
     isNationalIdNotAvailable,
     isEmailNotAvailable,
     fetchUsers,
-    fetchUserData
+    fetchUserData,
+    updatePassword
 
 }

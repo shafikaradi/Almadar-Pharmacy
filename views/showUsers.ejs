@@ -72,17 +72,36 @@
     
        </div>
 
-<div class="uk-position-bottom-center">
-        <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-text-right" ng-repeat="user in users | filter:name | filter:userType" uk-grid>
-            <div class="uk-card uk-card-default uk-card-body">
-                    <h3 class="uk-card-title">{{user.FIRST_NAME}} {{user.FATHER_NAME}} {{user.SURENAME}}</h3> 
-                    <p>{{user.USER_TYPE_AR}}</p>
-                    <p>{{user.NATIONAL_ID}}</p>
-                    <p>{{user.EMAIL}}</p>
-                    <p>{{user.MOBILE_NO}}</p>
-                    <p> <a class="uk-link-reset" href="">حذف</a><a class="uk-link-reset" href="">تعديل</a></p>
-            </div>
-        </div>
+<div class="uk-overflow-auto uk-position-center uk-text-right">
+    <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+        <thead>
+            <tr>
+                <th class="uk-table-expend">رقم الهاتف</th>
+                <th class="uk-table-expend">البريد الإلكتروني</th>
+                <th class="uk-table-expend">الرقم الوطني</th>
+                <th class="uk-table-small">نوع المستخدم</th>
+                <th class="uk-width-small">الأسم</th>
+                <th class="uk-width-small"></th>
+                <th class="uk-width-small"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users | filter:name | filter:luserType">
+                
+                <td class="">{{user.MOBILE_NO}}</td>
+                <td class="">{{user.EMAIL}}</td>
+                <td class="">{{user.NATIONAL_ID}}</td>
+                <td class="">{{user.USER_TYPE_AR}}</td>
+                <td class="">{{user.FIRST_NAME}} {{user.FATHER_NAME}} {{user.SURENAME}}</td>
+                <td class="uk-table-link">
+                    <a class="uk-link-reset" href="">حذف</a>
+                </td>
+                <td class="uk-table-link">
+                    <a class="uk-link-reset" href="">تعديل</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
           

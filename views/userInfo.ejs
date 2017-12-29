@@ -5,7 +5,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
-
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script type="text/javascript" src="/angular.min.js"></script>
+    <script type="text/javascript" src="/angular.js"></script>
     <style>
 
         #user-info-card{
@@ -16,15 +18,118 @@
    
        }
 
+          .primary-color{
+                 background-color: #86C323
+             }
+
+           .primary-color:hover{
+                 background-color: #68981b
+             }
+
+             button:hover{
+                 background-color: #68981b
+             }
+             .center{
+               
+               display: table;
+               margin: 0 auto;
+              }
+
+       
+
   </style>
   </head>
-<body ng-app="">
+<body ng-app="apUserInfo">
 
 
    <%- include('partials/header.ejs') %>
+   <div ng-controller="apUserInfoController" >
+        <div class="uk-padding-small uk-text-right">
+        <br/>
+        <div>
+            <div class="uk-card uk-card-body uk-card-default uk-card-small" ng-click="active = !active" ng-class="{'expandcollapse-heading-collapsed': active, 'expandcollapse-heading-expanded': !active}">
 
-   
+                
+                <h4>بيانات المستدخدم</h4>
 
+                <div  ng-hide="active">
+                        <div class="expand-collapse-content">
+                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                          on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
+                          raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                      </div>
+                </div>
+                
+            </div>
+        
+            <br/>
+            
+            <div class="uk-card uk-card-body uk-card-default uk-card-large uk-padding-large">
+                    <h4>كلمة السر</h4>
+
+                    <div class=" uk-position-center ">
+                       
+                        <form id="login" method="POST" >
+    
+                        <div class="uk-inline">  
+                             <input ng-model="oldPassword" name="oldPassword" type="password" class="uk-input uk-form-width-large" placeholder="كلمة المرور"/>
+                        </div>  
+             
+                        <br/>
+                        
+                            
+                        <div class="uk-inline">   
+                            <input id="newPassword" ng-model="newPassword" name="newPassword" type="password" placeholder="كلمة المرور الجديدة" class="uk-input uk-form-width-large"/>
+                        </div>
+             
+                        <br/>
+
+                        <div class="uk-inline">   
+                     
+                                <input id="confirmPassword" ng-model="confirmPassword" name="confirmPassword" type="password" placeholder="كلمة المرور الجديدة" class="uk-input uk-form-width-large"/>
+                        </div>
+                 
+                        <br/>
+                        
+                        <div class="uk-margin">
+                           <div class="center">   
+                             <button id="loginButton" ng-click="updatePassword($event)" class=" primary-color uk-button uk-button-primary">تسجيل دخول</button>
+                           </div> 
+                        </div>
+                      </form>
+                </div>    
+            </div>
+        </div>
+      </div>   
+
+    {{1+2}}
+    </div>      
+
+
+<script>
+var expandCollapseApp = angular.module('apUserInfo', ['ngAnimate']);
+
+expandCollapseApp.controller('apUserInfoController', function ($scope,$http) {
+    
+  
+
+   $scope.updatePassword = ($event) => {
+
+     $event.preventDefault();
+     $http.post('/updatePassword',{newPassword:$scope.newPassword, oldPassword:$scope.oldPassword}).then(
+         (result) => {
+
+         }, (error) => {
+
+         }
+     );
+
+
+   }
+        
+});
+</script>
 
 
 
