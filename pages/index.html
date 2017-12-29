@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>Title</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js"></script>
+
+
+           <style>
+
+            body{
+
+                background-color:#F8F8F8;
+             }
+
+             .primary-color{
+                 background-color: #86C323
+             }
+
+             .rectangle-border{
+                
+                 width:550px;
+                 height: 300px;
+                 border: 1px solid #6B6E70;
+                 border-radius: 15px;
+                 border-width: thin;
+                 padding-left: 25px;
+                 padding-top: 50px; 
+                 box-shadow: 6px 6px 15px rgb(117, 116, 116);
+
+             }
+
+             .wrap-form{
+                display: -webkit-flex; /* Safari */
+               -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+               display: flex;   
+               flex-wrap: wrap;
+               padding-left: 120px;
+               padding-top: 50px; 
+             }
+
+             .center{
+               
+                display: table;
+                margin: 0 auto;
+               }
+             
+           </style> 
+           
+    </head>
+    <body>
+
+
+        
+
+            
+       <!-- <div class="uk-position-center rectangle-border wrap-form"> -->
+        <div class="uk-position-center uk-card uk-card-default uk-card-body">
+            <form method="POST" action="/">
+
+           <div class="uk-inline">  
+                <span class="uk-form-icon" uk-icon="icon: mail"></span>
+               <input name="email" type="email" placeholder="البريد الإلكتروني" class="uk-input uk-form-width-large"/>
+           </div>  
+               <br/>
+           <div class="uk-margin uk-inline">   
+                <span class="uk-form-icon" uk-icon="icon: lock"></span>
+               <input name="password" type="password" placeholder="الكلمة السرية" class="uk-input uk-form-width-large"/>
+           </div>
+
+           <br/>
+           
+           <div class="uk-margin">
+                <div class="center">   
+                  <button id="login" class=" primary-color uk-button uk-button-primary">تسجيل دخول</button>
+                </div> 
+            </div>
+         </form>
+      </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+      
+      
+      
+      </script>
+       
+    </body>
+</html>

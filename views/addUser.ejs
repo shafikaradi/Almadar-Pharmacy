@@ -1,0 +1,296 @@
+<html>
+
+   <head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js"></script>
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script type="text/javascript" src="/dataIntegrity.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <style> 
+
+        #user-info-card{
+
+        position: fixed;
+        top: 25px;
+        
+   
+       }
+
+      .container{
+                text-align: center;
+      }
+
+      .alert-position{
+
+             bottom: 100px;
+             position: relative;
+        
+      }
+
+       .primary-color{
+                 background-color: #86C323
+             }
+
+        .primary-color:hover{
+                background-color: #68981b
+            }
+
+        button:hover{
+                background-color: #68981b
+            }
+
+        .center{
+               
+                display: table;
+                margin: 0 auto;
+         }
+                 
+
+       </style>
+
+     
+     
+
+   </head>
+
+
+
+   <body>
+
+
+    <%-  include('partials/header.ejs') %>
+
+
+ <div class="uk-width-1-6">
+
+        <div class="uk-padding  uk-position-small uk-position-center uk-position-fixed uk-card uk-card-default">
+          <form method="POST" action="/addUser" class="uk-text-left">
+
+              <div class="uk-margin">
+                 <input id="fatherName" name="fatherName" class="uk-text-right uk-input uk-form-width-large" type="text" placeholder="إسم الأب">
+                 <input id="firstName" name="firstName" class="uk-text-right uk-input uk-form-width-large" type="text" placeholder="إسم المستخدم">
+               </div>
+
+               <div class="uk-margin">
+                  <input id="nationalId" name="nationalId" class="uk-text-right uk-input uk-form-width-large" type="text" placeholder="الرقم الوطني">
+                  <input id="surename" name="surename" class="uk-text-right uk-input uk-form-width-large" type="text" placeholder="إسم العائلة">
+               </div>
+
+               <div class="uk-margin">
+                  <input id="mobileNo" name="mobileNo" class="uk-text-right uk-input uk-form-width-large" type="text" placeholder="رقم الهاتف">
+                  <input id="email" name="email" class="uk-text-right uk-input uk-form-width-large" type="email" placeholder="البريد الإلكترني">
+               </div>
+
+               <div class="uk-margin">
+                  <input id="confirmPassword"  name="confirmPassword" class="uk-text-right uk-input uk-form-width-large" type="password" placeholder="تأكيد كلمة المرور">
+                 <input id="password" name="password" class="uk-text-right uk-input uk-form-width-large" type="password" placeholder="كلمة المرور">
+               </div>
+
+               <div class="uk-text-right uk-margin">
+                  <select id="userType" name="userType" class="uk-text-right uk-select">
+                    <option value="0001">مدير النظام</option>
+                    <option value="0010">مدير المخزن</option>
+                    <option value="0011">طبيب</option>
+                    <option value="0100">صيدلي</option>
+                  </select>
+                </div>
+
+             <div class="uk-margin">
+              <div class="center">   
+                <button id="signUpButton" class="primary-color uk-button uk-button-primary">تسجيل مستخدم جديد</button>
+              </div> 
+            </div>
+
+
+          </form>
+
+   
+        
+        </div>
+   </div>
+    
+
+
+             
+       <div id="alert" class="uk-width-1-2 uk-position-small uk-position-bottom-center uk-position-fixed alert-position container uk-alert-danger" uk-alert> 
+         
+         <p id="alertContent"> </p> 
+         
+        </div>
+
+
+
+     <script type="text/javascript">
+
+
+      document.getElementById('signUpButton').onmouseover = (event) => {
+
+         document.getElementById('signUpButton').style.backgroundColor = "#68981b"
+
+      }
+
+      document.getElementById('signUpButton').onmouseout = (event) => {
+
+         document.getElementById('signUpButton').style.backgroundColor = "#86C323"
+
+      }
+
+      
+
+    </script>
+
+
+    <script>
+
+       $("#alert").hide();
+
+      $(document).ready(() => {
+
+             $("#signUpButton").click((event) => {
+
+                const firstName = $("#firstName").val();
+                const fatherName = $("#fatherName").val();
+                const surename = $("#surename").val();
+                const email = $("#email").val();
+                const mobileNo = $("#mobileNo").val();
+                const password = $("#password").val();
+                const confirmPassword = $("#confirmPassword").val();
+                const nationalId = $("#nationalId").val();
+                const userType = $("#userType").val();
+               
+
+               event.preventDefault();
+
+               if(areFieldsEmpty([firstName,fatherName,surename,email,mobileNo,password,confirmPassword,nationalId])){
+
+                  $("#alert").show();
+                  $("#alertContent").text("كل الحقول مطلوبة");
+
+               }else if(!isValidateName(firstName)){
+                 
+
+                 $("#alert").show();
+                  $("#alertContent").text("الأسم يجب أن يحتوي على حروف فقط");
+              
+                 
+              }else if(!isValidateName(fatherName)){
+                 
+                  $("#alert").show();
+                  $("#alertContent").text("أسم الأب يجب أن يحتوي على حروف فقط");
+                 
+              }else if(!isValidateName(surename)){
+                 
+
+                  $("#alert").show();
+                  $("#alertContent").text("أسم الأب يجب أن يحتوي على حروف فقط");
+                 
+              }else if(!isNumeric(nationalId)){
+
+                 $("#alert").show();
+                 $("#alertContent").text("الرقم الوطني يجب أن يجتوي على أرقام فقط");
+
+               }else if(!isNumeric(mobileNo)){
+
+                     $("#alert").show();
+                     $("#alertContent").text("رقم الهاتف يجب أن يجتوي على أرقام فقط");
+
+
+               }else if(!isEmail(email)){
+      
+                  $("#alert").show();
+                  $("#alertContent").text("رجاء تأكد من صحة صيغة البريد الإلكتروني");
+                 
+               }else if(!passwordLength(password)){
+                
+                 $("#alert").show();
+                 $("#alertContent").text("يجب أن لا تقل كلمة المرور عن 6 أحرف");
+
+               }else if(!passwordMatcher(password,confirmPassword)){
+
+                 $("#alert").show();
+                 $("#alert").text("كلمة سر غير متوافقة");
+
+               }else{
+                 
+                  $("#alert").hide();
+
+
+                  $.ajax({
+
+                    type:"POST",
+                    data:`firstName=${firstName}&fatherName=${fatherName}&surename=${surename}&nationalId=${parseInt(nationalId)}&mobileNo=${parseInt(mobileNo)}&email=${email}&password=${password}&userType=${userType}`,
+                    url:"/addNewUser",
+                     success:(data) => {
+                           
+                            $("#alert").addClass("uk-alert-danger");
+                            $("#alert").removeClass("uk-alert-success");
+
+                        if(data.isNationalIdNotAvailable){
+
+                             $("#alert").show();
+                             $("#alert").text(`الرقم الوطني ${nationalId} مستخدم بالفعل`);
+
+                          }else if(data.isMobieNoNotAvailable){
+
+                             $("#alert").show();
+                             $("#alert").text(`مستخدم بالفعل رقم الهاتف ${mobileNo} مستخدم بالفعل`);
+
+                          }else if(data.isEmailNotAvailable){
+
+                             $("#alert").show();
+                             $("#alert").text(`مستخدم بالفعل ${email} البريد الإلكتروني`);
+
+                          }else if(data.isInserted){
+
+                             $("#alert").show();
+                             $("#alert").text(`بنجاح ${firstName} تم إدخال المستخدم`);
+                             
+                           }else{
+
+                             $("#alert").addClass("uk-alert-danger");
+                             $("#alert").removeClass("uk-alert-success");
+                             $("#alert").show();
+                             $("#alert").text(`فشل التسجيل`);
+
+
+                           }
+
+                      } 
+
+                 });
+
+               }
+
+             });
+
+
+       
+      });
+
+
+
+     </script>
+
+
+    <script>
+
+
+
+    const warning = (text) => {
+
+       return "<div class=\"uk-width-1-2 uk-position-large uk-position-bottom-center uk-position-fixed alert-position container uk-alert-danger\" uk-alert> <p>"+text+"</p> </div>";
+
+     }
+
+
+     
+    
+  </script>
+
+
+   </body>
+
+
+</html>    

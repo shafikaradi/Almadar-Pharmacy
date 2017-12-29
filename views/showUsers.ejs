@@ -1,0 +1,122 @@
+<html>
+
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js"></script>
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    
+ <style> 
+
+        #user-info-card{
+
+        position: fixed;
+        top: 25px;
+        
+   
+       }
+      
+       .positon{
+         position: fixed;
+        top: 125px;
+       }
+       .primary-color{
+                 background-color: #86C323
+        }
+
+        .primary-color:hover{
+                background-color: #68981b
+        }
+
+        button:hover{
+                background-color: #68981b
+            }
+
+        .center{
+               
+                display: table;
+                margin: 0 auto;
+         }
+                 
+
+       </style>
+
+  </head>
+
+ 
+
+  <body ng-app="apSearchUser" ng-controller="apSearchUserController">
+
+      <%-  include('partials/header.ejs') %>
+ 
+
+          <div class="uk-padding-small  positon uk-position-top-center uk-card uk-card-default">
+          <form method="POST" action="/showUsersResult" class="">
+
+              <div class="uk-margin">
+
+                <!--  <button id="signUpButton" class="primary-color uk-button uk-button-primary" ng-click="fetchUsers();">بحث</button> -->
+                  <select name="userType" class="uk-text-right uk-form-width-large uk-select" data-ng-model="userType">
+                      <option value="">الكل</option>
+                      <option value="مدير نظام">مدير النظام</option>
+                      <option value="مدير المخزن">مدير المخزن</option>
+                      <option value="طبيب">طبيب</option>
+                      <option value="صيدلي">صيدلي</option>
+                    </select>
+                    <input name="name" class="uk-text-right uk-input uk-form-width-large" data-ng-model="name" type="text" placeholder="إسم المستخدم/الرقم الوطني">
+           
+            </div>
+         
+        </form>
+    
+       </div>
+
+<div class="uk-position-bottom-center">
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-text-right" ng-repeat="user in users | filter:name | filter:userType" uk-grid>
+            <div class="uk-card uk-card-default uk-card-body">
+                    <h3 class="uk-card-title">{{user.FIRST_NAME}} {{user.FATHER_NAME}} {{user.SURENAME}}</h3> 
+                    <p>{{user.USER_TYPE_AR}}</p>
+                    <p>{{user.NATIONAL_ID}}</p>
+                    <p>{{user.EMAIL}}</p>
+                    <p>{{user.MOBILE_NO}}</p>
+                    <p> <a class="uk-link-reset" href="">حذف</a><a class="uk-link-reset" href="">تعديل</a></p>
+            </div>
+        </div>
+</div>
+
+          
+       
+
+       </div>
+
+           
+       <script>
+
+          angular.module('apSearchUser',[]).controller('apSearchUserController',($scope,$http) => {
+     
+            $http.post('/getUsers').then((response) => {
+              
+
+            //  alert(JSON.stringify(response.data.users))
+              $scope.users = response.data.users;
+
+       
+            });
+             $scope.fetchUsers = (event) => {
+     
+               event.preventDefault();
+               alert($scope.name);
+             }
+     
+          });
+        
+        
+        
+        
+        </script>
+
+  
+
+  </body>
+</html>
