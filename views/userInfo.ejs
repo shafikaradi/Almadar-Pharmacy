@@ -6,6 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
     <script type="text/javascript" src="/jquery.min.js"></script>
+    <script type="text/javascript" src="/dataIntegrity.js"></script>
     <script type="text/javascript" src="/angular.min.js"></script>
     <script type="text/javascript" src="/angular.js"></script>
     <style>
@@ -71,6 +72,10 @@
                                   <input id="email" name="email" class="uk-text-right uk-input uk-form-width-large" type="email" placeholder="البريد الإلكترني">
                                </div>
 
+                               <div class="uk-margin center">
+                                  <button id="" ng-click="" class=" primary-color uk-button uk-button-primary">حفظ التغييرات</button>
+                               </div>
+
                            </form>
                         </div>
                       </div>
@@ -133,7 +138,10 @@ expandCollapseApp.controller('apUserInfoController', function ($scope,$http) {
 
      $event.preventDefault();
      $http.post('/updatePassword',{newPassword:$scope.newPassword, oldPassword:$scope.oldPassword}).then(
+
          (result) => {
+
+           alert(result);
 
          }, (error) => {
 
