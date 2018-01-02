@@ -171,6 +171,7 @@ const createNewUserPromise = (nationalId,firstName, fatherName, surename, mobile
 
 
 
+
 module.exports = {
 
     isNumeric,
