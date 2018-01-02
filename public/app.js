@@ -1,4 +1,4 @@
-const email = Vue.component('email', {
+const ab = Vue.component('email', {
     template: '<div class="uk-inline"> <span class="uk-form-icon" uk-icon="icon: mail"></span><input v-model="email" id="email" name="email" type="email" placeholder="البريد الإلكتروني" class="uk-input uk-form-width-large"/></div>',
     data: function() {
 
@@ -21,42 +21,67 @@ const password = Vue.component('password', {
 });
 
 Vue.component('submit', {
-    template:'  <div class="uk-margin"> <div class="center"> <button id="loginButton" v-on:click.prevent="areFieldsEmpty" class=" primary-color uk-button uk-button-primary">تسجيل دخول</button>  </div> </div>',
+    template:'  <div class="uk-margin"> <div class="center"> <button id="loginButton" v-on:click.prevent="signin" class=" primary-color uk-button uk-button-primary">تسجيل دخول</button>  </div> </div>',
     methods:{
 
         areFieldsEmpty:function(){
 
-            console.log(a.$refs);
+            console.log(ab);
 
-            if((this.$refs.email === undefined || this.$refs.email === '') && (this.$refs.password === undefined || this.$refs.password === '')){
+            if((ab.$refs.email === undefined || ab.$refs.email === '') && (password.$refs.password === undefined || password.$refs.password === '')){
  
                alert('no email no password');
                 
-            }else if(this.email === undefined || this.email === '') {
+            }else if(ab.$refs === undefined || ab.$refs === '') {
  
               alert('no password');
  
-            }else if(this.password === undefined || this.password === ''){
+            }else if(ab.$refs.email === undefined || ab.$refs.email === ''){
                alert('no email');
             }
  
           
  
          
-         }
+         },
+         signin:function(){
+
+            this.$http.post('/getNationlId',{params:{email:"shafiq.aradi@icloud.com",password:"a"}}).then(response => {
+
+                alert(JSON.stringify(response));
+
+            },error =>{
+
+                console.log(JSON.stringify(error));
+
+            })
+        }
+    
 
     }
 });
+
+Vue.component('warning', {
+
+    template:'<div class="uk-width-1-2 removeable uk-position-large uk-position-bottom-center uk-position-fixed alert-position container uk-alert-danger" uk-alert> <p></p> </div>',
+    data:function(){
+
+        return {
+          
+            message:""
+            
+        }
+    }
+})
   
 
-const a = new Vue({
+const vueApp = new Vue({
 
     el:"#loginApp",
     data:{
     
         email:"",
-        password:"",
-        a:"<h1>hi</h1>"
+        password:""
     
     },
     mounted:function(){
@@ -64,17 +89,12 @@ const a = new Vue({
         // this.showAlert();
     },
     methods:{
-    
+
+      
        
     
     }
     
 });
 
-Vue.http.get('/getNationlId').then(response => {
- 
-    alert(JSON.stringify(response));
 
-   }, error => {
-    alert(JSON.stringify(error));
-});
