@@ -5,15 +5,15 @@ const isNumeric = (val) => {
 
   }
 
-const passwordLength = (val) => {
+const passwordLengthLessThenSix = (val) => {
 
     if(val.length < 6){
 
-        return false;
+        return true;
 
     }else{
 
-         return true;
+         return false;
 
     }
 
@@ -175,7 +175,7 @@ const createNewUserPromise = (nationalId,firstName, fatherName, surename, mobile
 module.exports = {
 
     isNumeric,
-    passwordLength,
+    passwordLengthLessThenSix,
     passwordMatcher,
     areFieldsEmpty,
     isValidateName,

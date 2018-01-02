@@ -182,7 +182,7 @@ const fetchUserData = (nationalId,callback) => {
 }
 
 
-const updatePassword = (oldePassword, newPasswordVal, nationalId) => {
+const updatePassword = (oldePassword, newPasswordVal, nationalId,callback) => {
 
     const con = mysql.createConnection(connectionConfiguration);
 

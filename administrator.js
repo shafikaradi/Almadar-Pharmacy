@@ -282,6 +282,12 @@ router.post('/updatePassword',(req,res) => {
 
         db.updatePassword(req.body.oldPassword, req.body.newPassword, req.session.nationalId, (result) => {
 
+            if(result.changedRows !== 0){
+
+                req.session.destroy()
+
+            }
+
             res.send({result:result});
 
         });
