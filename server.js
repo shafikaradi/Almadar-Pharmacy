@@ -80,9 +80,13 @@ app.post('/getNationlId',(req,res) => {
 
 app.get('/test', (request,response) => {
 
+    console.log({test:'test'});
     response.send({test:'test'});
+    
 
 })
+
+
 
 app.post('/',(request,response) => {
 

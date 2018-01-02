@@ -1,0 +1,200 @@
+<html>
+    <head>
+        <title>صيدلية المدار</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js"></script>
+            <script type="text/javascript" src="jquery.min.js"></script>
+            <script type="text/javascript" src="dataIntegrity.js"></script>
+            <script src="vue.js"></script>
+            <script src="vue-resource.js"></script>
+            
+         
+           <style>
+
+            .container
+            {
+                text-align: center;
+            }
+
+             .alert-position{
+
+             bottom: 5px;
+             position: relative;
+        
+            }
+
+            body{
+
+                background-color:#F8F8F8;
+             }
+
+             .primary-color{
+                 background-color: #86C323
+             }
+
+           .primary-color:hover{
+                 background-color: #68981b
+             }
+
+             button:hover{
+                 background-color: #68981b
+             }
+
+            
+
+             .rectangle-border{
+                
+                 width:550px;
+                 height: 300px;
+                 border: 1px solid #6B6E70;
+                 border-radius: 15px;
+                 border-width: thin;
+                 padding-left: 25px;
+                 padding-top: 50px; 
+                 box-shadow: 6px 6px 15px rgb(117, 116, 116);
+
+             }
+
+             .wrap-form{
+                display: -webkit-flex; /* Safari */
+               -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+               display: flex;   
+               flex-wrap: wrap;
+               padding-left: 120px;
+              padding-top: 50px; 
+             }
+
+             .center{
+               
+                display: table;
+                margin: 0 auto;
+               }
+
+            .card-position{
+
+                height: 10em;
+              position: relative
+            
+            }
+             
+           </style> 
+
+    
+         
+    </head>
+    <body >
+
+            
+       <div id="loginApp" class="uk-position-fixed">
+      
+        <div class="uk-position-fixed uk-position-center uk-card uk-card-default uk-card-body">
+
+            <form id="login" method="POST" action="/">
+
+  
+            <email ref="email"></email>
+          
+           <br/>
+               
+          <password ref="password"></password>
+
+           <br/>
+           
+           <submit></submit>
+         </form>
+      </div>
+    </div>
+
+
+   <div>
+
+   
+    
+   </div>
+   
+   <script src="app.js"></script>
+
+  <script type="text/javascript">
+    
+  
+ 
+   window.onbeforeunload = function(){
+
+                sessionStorage.setItem('email', $("#email").val());
+                sessionStorage.setItem('password', $("#password").val());
+
+            };
+
+        
+
+            window.onload = function(){
+
+             const email = sessionStorage.getItem('email');
+             const password = sessionStorage.getItem('password');
+              
+              if(email !== null) $("#email").val(email);
+              if(password !== null) $("#password").val(password);
+             
+            };
+
+
+  </script>
+
+  <script type="text/javascript">
+ 
+            $("#loginButton").hover(() => {
+
+                $("#loginButton").css("background-color", "#68981b" );
+            
+            },() => {
+
+              $("#loginButton").css("background-color", "#86C323");
+
+            });
+
+            
+  </script>
+
+  
+  <script>
+
+
+$("#loginButton").click((event) => {
+
+    $("#loginButton").css("background-color", "#86C323");
+
+    $("#loginButton").hover(() => {
+
+                $("#loginButton").css("background-color", "#68981b" );
+            
+            },() => {
+
+              $("#loginButton").css("background-color", "#86C323");
+
+            });
+    
+      });
+  </script>
+
+
+  
+
+
+   <script>
+
+
+            const warning = (text) => {
+
+
+                return "<div class=\"uk-width-1-2 removeable uk-position-large uk-position-bottom-center uk-position-fixed alert-position container uk-alert-danger\" uk-alert> <p>"+text+"</p> </div>";
+            }
+
+  </script>
+
+       
+  </body>
+</html>
