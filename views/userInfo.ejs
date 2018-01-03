@@ -6,6 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js"></script>
     <script type="text/javascript" src="jquery.min.js"></script>
     <script  src="dataIntegrity.js"></script>
+    <script  src="userInfo.js"></script>
     <style>
 
         #user-info-card{
@@ -70,7 +71,7 @@
                                </div>
 
                                <div class="uk-margin center">
-                                  <button id="" ng-submit="changePassword(someform)" class=" primary-color uk-button uk-button-primary">حفظ التغييرات</button>
+                                  <button id="updateUserData" class=" primary-color uk-button uk-button-primary">حفظ التغييرات</button>
                                </div>
 
                            </form>
@@ -123,123 +124,12 @@
       </div>   
     </div>      
 
-    <div id="alert" ng-show ="isVisible" ng-bind-html="alert">
+    <div id="alert">
    
  
 
     </div>
 
-<script>
-
-
-$(document).ready(() => {
-
-    $('#changePassword').click((event) => {
-
-      event.preventDefault();
-    
-  
-      if(areFieldsEmpty([$("#oldPassword").val(),$("#newPassword").val(),$("#confirmPassword").val()])){
-
-            alert('كل الحقول مطلوبة')
-            }else if(passwordLengthLessThenSix($("#newPassword").val())){
-
-            alert('كلمة السر يجب ألا تكون أقل من 6 أحرف');
-
-            }else if(passwordMatcher($("#oldPassword").val(),$("#confirmPassword").val())){
-
-            alert('كلمة السر غير متوافقة');
-
-            }else{
-
-              $.ajax({
-
-                        
-                  url:"/updatePassword",
-                  type:"POST",
-                  data:"oldPassword="+$("#oldPassword").val()+"&newPassword="+$("#newPassword").val(),
-                  success: (response) => {
-
-
-                                    
-                    if(response.changedRows === 0){
-
-                        alert("فشل تغيير، حول مجدداً")
-
-
-                      }else{
-
-                        alert("تم تغيير كلمة المرور بنجاح")
-                        window.location.replace('/');
-
-                      }
-
-
-                  }
-
-
-
-              });
-
-
-             }
-
-     
-
-   });
-
-})
-
-
-</script>
-
-
-
-<script type="text/javascript">
- 
-  $("#changePassword").hover(() => {
-
-      $("#changePassword").css("background-color", "#68981b" );
-  
-  },() => {
-
-    $("#changePassword").css("background-color", "#86C323");
-
-  });
-
-  
-</script>
-
-<script type="text/javascript">
- 
-  $(document).ready(() => {
-
-    
-      
-      $.ajax({
-
-        url:"/fetchUserData",
-        type:"POST",
-        success:(result) => {
-
-          
-
-          
-          $("#nationalId").val(result[0].NATIONAL_ID);
-          $("#firstName").val(result[0].FIRST_NAME);
-          $("#surename").val(result[0].SURENAME);
-          $("#fatherName").val(result[0].FATHER_NAME);
-          $("#email").val(result[0].EMAIL);
-          $("#mobileNo").val(result[0].MOBILE_NO);
-        }
-
-
-      });
-
-  });
-
-  
-</script>
 
 
 
