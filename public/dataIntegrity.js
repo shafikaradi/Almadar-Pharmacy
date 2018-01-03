@@ -1,4 +1,4 @@
-const db = require('../database/database');
+
 const isNumeric = (val) => {
 
     return !isNaN(parseFloat(val)) && isFinite(val);
@@ -73,100 +73,100 @@ const isEmail = (val) => {
        return false;   
 
 }
-const isNationalIdNotAvailablePromise = (mobileNo) => {
+// const isNationalIdNotAvailablePromise = (mobileNo) => {
 
-    return new Promise((resolve,reject) => {
+//     return new Promise((resolve,reject) => {
 
 
-          db.isNationalIdNotAvailable(mobileNo, (result) => {
+//           db.isNationalIdNotAvailable(mobileNo, (result) => {
  
-                if(result){
+//                 if(result){
 
-                    resolve(result);
+//                     resolve(result);
 
-                }else{
+//                 }else{
 
-                  reject(new Error('Something went wrong'));
+//                   reject(new Error('Something went wrong'));
                     
-                }
+//                 }
 
-          });
+//           });
 
-    });
-};
+//     });
+// };
 
-const isEmailNotAvailablePromise = (email) => {
-
-
-    return new Promise((resolve,reject) => {
+// const isEmailNotAvailablePromise = (email) => {
 
 
-        db.isEmailNotAvailable(email,(result) => {
+//     return new Promise((resolve,reject) => {
+
+
+//         db.isEmailNotAvailable(email,(result) => {
      
-            if(result){
+//             if(result){
 
-                resolve(result);
+//                 resolve(result);
 
-            }else{
+//             }else{
 
-              reject(new Error('Something went wrong'));
+//               reject(new Error('Something went wrong'));
                 
-            }
+//             }
         
-        });
+//         });
 
-    });
+//     });
 
-};
+// };
 
-const isMobieNoNotAvailablePromise = (mobileNo) => {
-
-
-    return new Promise((resolve,reject) => {
+// const isMobieNoNotAvailablePromise = (mobileNo) => {
 
 
-        db.isMobileNoAvaiable(mobileNo,(result) => {
+//     return new Promise((resolve,reject) => {
+
+
+//         db.isMobileNoAvaiable(mobileNo,(result) => {
      
-            if(result){
+//             if(result){
 
-                resolve(result);
+//                 resolve(result);
 
-            }else{
+//             }else{
 
-              reject(new Error('Something went wrong'));
+//               reject(new Error('Something went wrong'));
                 
-            }
+//             }
         
-        });
+//         });
 
-    });
+//     });
 
-};
+// };
 
-const createNewUserPromise = (nationalId,firstName, fatherName, surename, mobileNo, email, password, userType) => {
+// const createNewUserPromise = (nationalId,firstName, fatherName, surename, mobileNo, email, password, userType) => {
     
-    return new Promise((resolve,reject) => {
+//     return new Promise((resolve,reject) => {
 
-        db.addNewUser(nationalId,firstName, fatherName, surename, mobileNo, email, password, userType,(result) => {
+//         db.addNewUser(nationalId,firstName, fatherName, surename, mobileNo, email, password, userType,(result) => {
 
 
-            if(result){
+//             if(result){
 
-                resolve(result);
+//                 resolve(result);
 
-            }else{
+//             }else{
 
-              reject(new Error('Something went wrong'));
+//               reject(new Error('Something went wrong'));
                 
-            }
+//             }
 
 
 
-        })
+//         })
 
 
-    });
-}
+//     });
+// }
 
 
 
@@ -179,10 +179,5 @@ module.exports = {
     passwordMatcher,
     areFieldsEmpty,
     isValidateName,
-    isEmail,
-    isNationalIdNotAvailablePromise,
-    isEmailNotAvailablePromise,
-    isMobieNoNotAvailablePromise,
-    createNewUserPromise
-
+    isEmail
 };

@@ -4,9 +4,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
-    <script type="text/javascript" src="/jquery.min.js"></script>
-    <script  src="/dataIntegrity.js"></script>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script  src="dataIntegrity.js"></script>
     <style>
 
         #user-info-card{
@@ -140,18 +139,18 @@ $(document).ready(() => {
       event.preventDefault();
     
   
-      // if(areFieldsEmpty([$("#oldPassword").val(),$("#newPassword").val(),$("#confirmPassword").val()])){
+      if(areFieldsEmpty([$("#oldPassword").val(),$("#newPassword").val(),$("#confirmPassword").val()])){
 
-      //       alert('كل الحقول مطلوبة')
-      //       }else if(passwordLengthLessThenSix($("#newPassword").val())){
+            alert('كل الحقول مطلوبة')
+            }else if(passwordLengthLessThenSix($("#newPassword").val())){
 
-      //       alert('كلمة السر يجب ألا تكون أقل من 6 أحرف');
+            alert('كلمة السر يجب ألا تكون أقل من 6 أحرف');
 
-      //       }else if(passwordMatcher($("#oldPassword").val(),$("#confirmPassword").val())){
+            }else if(passwordMatcher($("#oldPassword").val(),$("#confirmPassword").val())){
 
-      //       alert('كلمة السر غير متوافقة');
+            alert('كلمة السر غير متوافقة');
 
-      //       }else{
+            }else{
 
               $.ajax({
 
@@ -183,7 +182,7 @@ $(document).ready(() => {
               });
 
 
-            // }
+             }
 
      
 
