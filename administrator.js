@@ -304,6 +304,25 @@ router.post('/updatePassword',(req,res) => {
 
 });
 
+
+router.post('/fetchUserData',(req,res) => {
+
+    if(req.session.nationalId){
+console.log(JSON.stringify(req.session.nationalId))
+        db.fetchUserData(req.session.nationalId, (result) => {
+
+            res.send(result);
+
+        });
+
+
+    }else{
+
+        res.redirect('/');
+    }
+
+});
+
 const rerenderPageOnInserting = (res,name,specialty,result) => {
 
     res.render('addUser.ejs',{

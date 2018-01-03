@@ -41,11 +41,11 @@
 
 
    <%- include('partials/header.ejs') %>
-   <div ng-controller="apUserInfoController" >
+   <div>
         <div class="uk-padding-small uk-text-right">
         <br/>
         <div>
-            <div class="uk-card uk-card-body uk-card-default uk-card-small" ng-click="active = !active" ng-class="{'expandcollapse-heading-collapsed': active, 'expandcollapse-heading-expanded': !active}">
+            <div class="uk-card uk-card-body uk-card-default uk-card-small">
 
                 
                 <h4>بيانات المستدخدم</h4>
@@ -83,7 +83,7 @@
             <br/>
 
 
-          <div class="uk-card uk-card-body uk-card-default uk-card-small" ng-click="active = !active" ng-class="{'expandcollapse-heading-collapsed': active, 'expandcollapse-heading-expanded': !active}">   
+          <div class="uk-card uk-card-body uk-card-default uk-card-small">   
             <h4>كلمة السر</h4>
 
             <div class="center ">
@@ -204,6 +204,37 @@ $(document).ready(() => {
   },() => {
 
     $("#changePassword").css("background-color", "#86C323");
+
+  });
+
+  
+</script>
+
+<script type="text/javascript">
+ 
+  $(document).ready(() => {
+
+    
+      
+      $.ajax({
+
+        url:"/fetchUserData",
+        type:"POST",
+        success:(result) => {
+
+          
+
+          
+          $("#nationalId").val(result[0].NATIONAL_ID);
+          $("#firstName").val(result[0].FIRST_NAME);
+          $("#surename").val(result[0].SURENAME);
+          $("#fatherName").val(result[0].FATHER_NAME);
+          $("#email").val(result[0].EMAIL);
+          $("#mobileNo").val(result[0].MOBILE_NO);
+        }
+
+
+      });
 
   });
 
